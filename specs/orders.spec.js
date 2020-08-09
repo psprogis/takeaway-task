@@ -7,6 +7,9 @@ describe('orders feature', () => {
         await browser.waitForAngularEnabled(false);
 
         this.mainPage = new MainPage();
+    });
+
+    beforeEach(async () => {
         await this.mainPage.open();
     });
 
@@ -20,32 +23,37 @@ describe('orders feature', () => {
         const testRestaurant = await searchRestaurantPage.selectRestaurant({ name: 'TEST Restaurant Selenium' });
         await testRestaurant.addItem({ name: 'Salami' });
 
-        const deliveryPage = await testRestaurant.placeOrder();
-        await deliveryPage.processOrder({
+        const orderDetailsPage = await testRestaurant.placeOrder();
+        const summaryPage = await orderDetailsPage.processOrder({
             where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
             who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },
             when: { time: 'asap' },
             payment: { type: 'cash' },
         });
 
-        // assert order reference number
-
-        await browser.sleep(5000);
+        expect(summaryPage.getOrderReference()).toMatch(/[A-Z0-9]{6}/,
+            'order reference should contains 6 alpha-numeric characters');
     });
 
-    xit('test', async () => {
-        await browser.get('https://www.thuisbezorgd.nl/en/checkout-order-qa-restaurant-selenium');
+    it('case 2', async () => {
+        await browser.sleep(3000);
 
-        await browser.sleep(2000);
+        const searchRestaurantPage = await this.mainPage
+            .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
 
-        $('#iremarks').sendKeys('tesing');
+        const testRestaurant = await searchRestaurantPage.selectRestaurant({ name: "Maarten's Pannenkoeken" });
+        await testRestaurant.addItem({ name: 'Ham' });
 
-        const payment = await $('.paymentbuttonwrapper.payment-method-type-online.paymentmethod3');
-        await browser.executeScript('arguments[0].scrollIntoView(true)', payment);
+        const orderDetailsPage = await testRestaurant.placeOrder();
 
-        await browser.sleep(2000);
-        await payment.click();
+        const summaryPage = await orderDetailsPage.processOrder({
+            where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
+            who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },
+            when: { time: 'asap' },
+            payment: { type: 'cash' },
+        });
 
-        await browser.sleep(5000);
-    }, 5 * 60 * 1000);
+        expect(summaryPage.getOrderReference()).toMatch(/[A-Z0-9]{6}/,
+            'order reference should contains 6 alpha-numeric characters');
+    });
 });

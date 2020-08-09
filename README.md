@@ -1,7 +1,12 @@
 # Takeaway test task
 
 ##Todo
-- add waitFor helpers, instead of EC
+- add waitFor helpers, instead of EC, refactor methods
+- add helper for scroll and click
+- add helper method for non-angular site
+- add more logs
+- add allure.feature, allure.story
+- add allure steps ?
 
 ##Notes
 Since I have only 1 day (Sunday) for this task and few hours during the week, I have to choose some
@@ -17,14 +22,16 @@ workarounds/quick fixes instead of production ready solutions:
 - components library requires time, at least 2-3 weeks to create all fragments/elements: dropdowns, inputs, more complex widget, etc.
   it can be our own solution, or we can use some popular library, e.g. [Page Fragments](https://github.com/Xotabu4/protractor-element-extend)
   as a quick fix I created only high level classes, it should be fixed in the future.
-- scenario: the whole scenario is pretty big and should be splitted into small tests for each page
+- scenario: the whole scenario is pretty big and should be splitted into small tests for each page. Case1 and case2 looks identical.
 - test structure:
 - reporting:
 - multibrowser support:
   - in the current task I tried multiCapabilities in protractor config + local browsers, the easies way
   - but in the real production testing selenoid should be used
   - or if we have some money - moon
-  - or we can waste tones of money and use browser stack and similar solutions 
+  - or we can waste tones of money and use browser stack and similar solutions
+- jsdocs 
+- since it is non-angular site some additional waitFor call required
   
 
 ## Preconditions/Environment
