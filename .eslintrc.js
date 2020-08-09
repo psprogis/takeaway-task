@@ -24,6 +24,13 @@ module.exports = {
         'padded-blocks': 'off',
         'class-methods-use-this': 'off',
         'no-continue': 'off',
+        'object-curly-newline': ['error', {
+            "ObjectExpression": {
+                "minProperties": 6,
+                "multiline": true,
+                "consistent": true
+            },
+        }],
     },
 
     plugins: [
