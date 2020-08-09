@@ -40,10 +40,10 @@ exports.config = {
     //     },
     // ],
 
-    onPrepare() {
+    async onPrepare() {
         const width = 1600;
         const height = 1200;
-        browser.driver.manage().window().setSize(width, height);
+        await browser.driver.manage().window().setSize(width, height);
 
         // reporters
         jasmine.getEnv().addReporter(
@@ -71,8 +71,6 @@ exports.config = {
 
             allure.createAttachment('Screenshot', pngBuffer, 'image/png');
         });
-
-        // jasmine.getEnv().addReporter(consoleReporter);
     },
 
     jasmineNodeOpts: {
