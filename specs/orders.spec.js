@@ -8,6 +8,7 @@ describe('orders feature', () => {
         await setNonAngularSite();
 
         const BASE_URL = 'https://www.thuisbezorgd.nl/en/';
+        // const BASE_URL = 'https://www.thuisbezorgd.nl/'; // will work in Dutch language also
         this.mainPage = new MainPage(BASE_URL);
     });
 
@@ -17,7 +18,7 @@ describe('orders feature', () => {
         await this.mainPage.open();
     });
 
-    it('should allow to create an order', async () => {
+    it('should allow to create an order with cash payment, closest amount', async () => {
         allure.story('STORY-111: user should be able to order food');
 
         const searchRestaurantPage = await this.mainPage
@@ -41,7 +42,7 @@ describe('orders feature', () => {
             'order reference should contains 6 alpha-numeric characters');
     });
 
-    it('should allow to create an order with exact amount payment', async () => {
+    it('should allow to create an order with cash payment, exact amount', async () => {
         allure.story('STORY-222: user should be able to order food (some additional descrition goes here)');
 
         const searchRestaurantPage = await this.mainPage
@@ -51,7 +52,6 @@ describe('orders feature', () => {
         await testRestaurant.addItem({ name: 'Ham' });
 
         const orderDetailsPage = await testRestaurant.placeOrder();
-
         const summaryPage = await orderDetailsPage.processOrder({
             where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
             who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },
