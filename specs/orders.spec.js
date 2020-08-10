@@ -7,7 +7,8 @@ describe('orders feature', () => {
         log.info('setup before test');
         await setNonAngularSite();
 
-        this.mainPage = new MainPage();
+        const BASE_URL = 'https://www.thuisbezorgd.nl/en/';
+        this.mainPage = new MainPage(BASE_URL);
     });
 
     beforeEach(async () => {
@@ -36,10 +37,7 @@ describe('orders feature', () => {
             'order reference should contains 6 alpha-numeric characters');
     });
 
-    // TODO: cleanup input (or browser cache)
     it('case 2', async () => {
-        await browser.sleep(3000);
-
         const searchRestaurantPage = await this.mainPage
             .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
 
