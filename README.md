@@ -2,11 +2,8 @@
 
 ##Todo
 - add helper for scroll and click
-- add helper method for non-angular site
-- add more logs
 - cleanup specs (add steps ?)
 - add allure.feature, allure.story
-- add allure steps ?
 - create Dropdown class
 
 ##Notes
@@ -34,7 +31,6 @@ workarounds/quick fixes instead of production ready solutions:
 - jsdocs 
 - since it is non-angular site some additional waitFor call required
   
-
 ## Preconditions/Environment
 * install protractor globally
 ```bash
