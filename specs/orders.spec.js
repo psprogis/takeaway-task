@@ -1,10 +1,11 @@
 const log = require('log4js').getLogger('spec-logger');
 const { MainPage } = require('../lib/ui/elements');
+const { setNonAngularSite } = require('../lib/browserHelpers');
 
 describe('orders feature', () => {
     beforeAll(async () => {
         log.info('setup before test');
-        await browser.waitForAngularEnabled(false);
+        await setNonAngularSite();
 
         this.mainPage = new MainPage();
     });
@@ -35,6 +36,7 @@ describe('orders feature', () => {
             'order reference should contains 6 alpha-numeric characters');
     });
 
+    // TODO: cleanup input (or browser cache)
     it('case 2', async () => {
         await browser.sleep(3000);
 
