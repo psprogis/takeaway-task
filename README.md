@@ -1,7 +1,6 @@
 # Takeaway test task
 
 ##Todo
-- add waitFor helpers, instead of EC, refactor methods
 - add helper for scroll and click
 - add helper method for non-angular site
 - add more logs
