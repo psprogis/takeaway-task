@@ -27,8 +27,8 @@ workarounds/quick fixes instead of production ready solutions:
 
 ##Todo
 - cleanup specs (add steps ?)
-- create Dropdown class
-- fix unhandled promise rejection
+
+- add notes about multiple browser and selenoid
 - use `NODE_PATH` variable to avoid relative paths
   
 ## Preconditions/Environment

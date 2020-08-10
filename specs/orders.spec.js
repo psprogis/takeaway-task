@@ -41,7 +41,7 @@ describe('orders feature', () => {
             'order reference should contains 6 alpha-numeric characters');
     });
 
-    it('case 2', async () => {
+    it('should allow to create an order with exact amount payment', async () => {
         allure.story('STORY-222: user should be able to order food (some additional descrition goes here)');
 
         const searchRestaurantPage = await this.mainPage

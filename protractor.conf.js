@@ -1,6 +1,7 @@
 require('./log4js.conf').init();
+const log = require('log4js').getLogger('conf-logger');
 
-const { SpecReporter } = require('jasmine-spec-reporter');
+const {SpecReporter} = require('jasmine-spec-reporter');
 const AllureReporter = require('jasmine-allure-reporter');
 
 exports.config = {
@@ -17,7 +18,7 @@ exports.config = {
 
     // uncomment for debug
     // useBlockingProxy: true,
-    // highlightDelay: 3000,
+    // highlightDelay: 2000,
     // webDriverLogDir: 'logs',
     // seleniumSessionId: '8c102a518e5a77af50647282628b4478',
 
@@ -29,6 +30,12 @@ exports.config = {
 
     // capabilities: {
     //     browserName: 'firefox',
+    //     enableVNC: true,
+    //     firefoxOptions: {
+    //         prefs: {
+    //             'geo.enabled': false,
+    //         },
+    //     },
     // },
 
     // multiCapabilities: [
@@ -70,6 +77,12 @@ exports.config = {
             const pngBuffer = Buffer.from(png, 'base64');
 
             allure.createAttachment('Screenshot', pngBuffer, 'image/png');
+        });
+
+        // temporary solution for unhandled rejections
+        process.on('unhandledRejection', (error) => {
+            log.warn('unhandledRejection');
+            log.warn(error);
         });
     },
 
