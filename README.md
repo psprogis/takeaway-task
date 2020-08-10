@@ -27,7 +27,7 @@ workarounds/quick fixes instead of production ready solutions:
 
 ##Todo
 - cleanup specs (add steps ?)
-
+- use cross-env
 - add notes about multiple browser and selenoid
 - use `NODE_PATH` variable to avoid relative paths
   

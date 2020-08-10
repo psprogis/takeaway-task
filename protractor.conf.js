@@ -1,10 +1,71 @@
 require('./log4js.conf').init();
 const log = require('log4js').getLogger('conf-logger');
 
-const {SpecReporter} = require('jasmine-spec-reporter');
+const { SpecReporter } = require('jasmine-spec-reporter');
 const AllureReporter = require('jasmine-allure-reporter');
 
-exports.config = {
+function setupCapabilities(config) {
+    let capabilityName = process.env.CAPABILITY_NAME;
+    // let { capabilityName } = browser.params; // --params can be used also
+    const supportedCapabilities = ['chrome', 'firefox', 'multiple', 'headless-chrome'];
+
+    log.debug(`capability name in setup: <${capabilityName}>`);
+
+    if (capabilityName === undefined || capabilityName === '') {
+        log.warn('using default chrome setup');
+        capabilityName = 'chrome';
+    }
+
+    if (!supportedCapabilities.includes(capabilityName)) {
+        throw new Error(`unknown capability, should be one of: ${supportedCapabilities}`);
+    }
+
+    log.info(`prepare capabilities for: ${capabilityName}`);
+
+    // https://www.protractortest.org/#/browser-setup
+    const capabilitiesMap = {
+        chrome: {
+            browserName: 'chrome',
+            version: '',
+            platform: 'ANY',
+        },
+
+        // https://developer.mozilla.org/en-US/docs/Web/WebDriver/Capabilities/firefoxOptions#Prefs
+        firefox: {
+            browserName: 'firefox',
+            enableVNC: true,
+            'moz:firefoxOptions': {
+                prefs: {
+                    'geo.enabled': false,
+                },
+            },
+        },
+        multiCapabilities: [
+            {
+                browserName: 'chrome',
+            },
+            {
+                browserName: 'firefox',
+            },
+        ],
+        'headless-chrome': {
+            browserName: 'chrome',
+            chromeOptions: {
+                args: ['--headless', '--disable-gpu', '--window-size=1600,1200'],
+            },
+        },
+    };
+
+    /* eslint-disable no-param-reassign */
+    if (capabilityName === 'multiple') {
+        config.multipleCapabilities = capabilitiesMap[capabilityName];
+    } else {
+        config.capabilities = capabilitiesMap[capabilityName];
+    }
+    /* eslint-enable no-param-reassign */
+}
+
+const config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     ignoreUncaughtExceptions: true,
     specs: [
@@ -21,31 +82,6 @@ exports.config = {
     // highlightDelay: 2000,
     // webDriverLogDir: 'logs',
     // seleniumSessionId: '8c102a518e5a77af50647282628b4478',
-
-    capabilities: {
-        browserName: 'chrome',
-        version: '',
-        platform: 'ANY',
-    },
-
-    // capabilities: {
-    //     browserName: 'firefox',
-    //     enableVNC: true,
-    //     firefoxOptions: {
-    //         prefs: {
-    //             'geo.enabled': false,
-    //         },
-    //     },
-    // },
-
-    // multiCapabilities: [
-    //     {
-    //         browserName: 'chrome',
-    //     },
-    //     {
-    //         browserName: 'firefox',
-    //     },
-    // ],
 
     async onPrepare() {
         const width = 1600;
@@ -93,3 +129,9 @@ exports.config = {
         print() {}, // turn off dots
     },
 };
+
+setupCapabilities(config);
+
+log.info(config);
+
+exports.config = config;

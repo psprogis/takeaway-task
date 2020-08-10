@@ -6,6 +6,9 @@
   "scripts": {
     "cleanup": "rimraf allure-results allure-report",
     "test": "npm run cleanup && protractor protractor.conf.js",
+    "test:firefox": "set CAPABILITY_NAME=firefox&& npm run cleanup && protractor protractor.conf.js",
+    "test:multiple": "set CAPABILITY_NAME=multiple&& npm run cleanup && protractor protractor.conf.js",
+    "test:headless-chrome": "set CAPABILITY_NAME=headless-chrome&& npm run cleanup && protractor protractor.conf.js",
     "report": "allure generate && allure open",
     "lint": "eslint ."
   },
