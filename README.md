@@ -1,12 +1,6 @@
 # Takeaway test task
 
-##Todo
-- add helper for scroll and click
-- cleanup specs (add steps ?)
-- add allure.feature, allure.story
-- create Dropdown class
-
-##Notes
+## Notes
 Since I have only 1 day (Sunday) for this task and few hours during the week, I have to choose some
 workarounds/quick fixes instead of production ready solutions:
 
@@ -30,6 +24,12 @@ workarounds/quick fixes instead of production ready solutions:
   - or we can waste tones of money and use browser stack and similar solutions
 - jsdocs 
 - since it is non-angular site some additional waitFor call required
+
+##Todo
+- cleanup specs (add steps ?)
+- add allure.feature, allure.story
+- create Dropdown class
+- use `NODE_PATH` variable to avoid relative paths
   
 ## Preconditions/Environment
 * install protractor globally
