@@ -28,7 +28,7 @@ describe('orders feature', () => {
             where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
             who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },
             when: { time: 'asap' },
-            payment: { type: 'cash' },
+            payment: { type: 'cash', details: { amount: 'closest' } },
         });
 
         expect(summaryPage.getOrderReference()).toMatch(/[A-Z0-9]{6}/,

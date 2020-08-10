@@ -5,8 +5,10 @@
 - add helper for scroll and click
 - add helper method for non-angular site
 - add more logs
+- cleanup specs (add steps ?)
 - add allure.feature, allure.story
 - add allure steps ?
+- create Dropdown class
 
 ##Notes
 Since I have only 1 day (Sunday) for this task and few hours during the week, I have to choose some
