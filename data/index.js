@@ -11,7 +11,7 @@ const ordersTestData = {
             where,
             who,
             when,
-            payment: { type: 'cash', details: { amount: 'closest' }}
+            payment: { type: 'cash', details: { amount: 'closest' } },
         },
     },
     case2: {

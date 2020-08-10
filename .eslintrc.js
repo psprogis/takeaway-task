@@ -25,10 +25,10 @@ module.exports = {
         'class-methods-use-this': 'off',
         'no-continue': 'off',
         'object-curly-newline': ['error', {
-            "ObjectExpression": {
-                "minProperties": 6,
-                "multiline": true,
-                "consistent": true
+            ObjectExpression: {
+                minProperties: 6,
+                multiline: true,
+                consistent: true,
             },
         }],
     },
