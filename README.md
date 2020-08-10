@@ -27,8 +27,8 @@ workarounds/quick fixes instead of production ready solutions:
 
 ##Todo
 - cleanup specs (add steps ?)
-- add allure.feature, allure.story
 - create Dropdown class
+- fix unhandled promise rejection
 - use `NODE_PATH` variable to avoid relative paths
   
 ## Preconditions/Environment

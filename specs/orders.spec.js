@@ -12,10 +12,14 @@ describe('orders feature', () => {
     });
 
     beforeEach(async () => {
+        allure.feature('ABC-555: orders'); // some feature code and/or description
+
         await this.mainPage.open();
     });
 
     it('should allow to create an order', async () => {
+        allure.story('STORY-111: user should be able to order food');
+
         const searchRestaurantPage = await this.mainPage
             .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
 
@@ -38,6 +42,8 @@ describe('orders feature', () => {
     });
 
     it('case 2', async () => {
+        allure.story('STORY-222: user should be able to order food (some additional descrition goes here)');
+
         const searchRestaurantPage = await this.mainPage
             .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
 
