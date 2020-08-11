@@ -36,6 +36,7 @@ workarounds/quick fixes instead of production ready solutions, some features are
   - code coverage (istambul, jacoco, etc.) ? - it should be done during unit tests. I guess Drill4j already has UI support.
   - requirements coverage - I do not have any functional requirements for the site. But it is obvious that those 2 cases
     do not cover all possible scenarios, nagative cases, etc.
+- storing images/screenshot inside git repository is more or less ok for this small example.
 
 ## Todo
 - cleanup specs (add steps ?)
@@ -170,23 +171,28 @@ multiCapabilities: [
 - download and start `cm` utility, see [official instructions] (https://aerokube.com/cm/latest/) or download binary from the
 [release page](https://github.com/aerokube/cm/releases). During the first run it will download all necessary browser images.
 Run docker images to double check:
-![cm selenoid start and docker images output](https://drive.google.com/file/d/12Z3xzBtsBYcEjXSVOP7NGldEF2FpotZz/view?usp=sharing "cm selenoid start and docker images output")
+![cm selenoid start and docker images output](screenshots/cm-start.png "cm selenoid start and docker images output")
 
 You can download additional browser versions if needed.
 - start `selenoid-ui`:
 ```bash
 .\cm selenoid-ui start
 ```
+2 containers should run now:
+![docker dashboard](screenshots/docker-containers-running.png "docker dashboard")
+
 - no need to update test configs, by default tests endpoint is `http://localhost:4444/wd/hub`.
   Check status:
   - `http://localhost:4444/status`
   - docker ps
   - open UI: `http://localhost:8080/`
-  // image
+  ![selenoid ui](screenshots/selenoid-ui.png "selenoid-ui")
 
 - run your tests
-// local run image
-// multiple run image
+    - chrome run
+    ![chrome run](screenshots/chrome-run.png "chrome run")
+    - 2 browsers run
+    ![multiple run](screenshots/multiple-run.png "multiple run")
 
 [more details](https://aerokube.com/selenoid/latest/)
 
