@@ -21,8 +21,10 @@ workarounds/quick fixes instead of production ready solutions, some features are
   pages have lots of ids so it is easy to find elements. 
 - reporting: jasmine supports a lot of reporters, I added only spec-reporter, but there are custom-reporters package.
   Visual reporting: very easy choice, since there are no alternatives, Allure Report is a standard de-facto in the industry.
+  Results will be generated after each `npm t<:capability>` run, to generate html report run `npm run report`.
   See screenshot below.
-- jsdocs 
+- "Documentation in code" - good code should we self explaining, also I have some comments and TODOs.
+  In real project I used  jsdocs. 
 - since it is non-angular site some additional "waitFor" calls required.
 - some selectors should be improved.
 - "Static data should be read from file" - I'm not sure that I understand correctly, what data should be read from file...
@@ -30,12 +32,15 @@ workarounds/quick fixes instead of production ready solutions, some features are
   - input data - 50/50. sometimes it might be good, e.g. in case of gigantic inputs. But in general test data (input data)
     should be as close to test as possible, in this case it is easy to read and understand the test scenario.
     Anyway I created data directory and it can be required in the test, it has orders data, but I didn't used it:)
+- "Coverage of functional scenarios, including corner cases" - it is the only requirement I didn't understand completely:
+  - code coverage (istambul, jacoco, etc.) ? - it should be done during unit tests. I guess Drill4j already has UI support.
+  - requirements coverage - I do not have any functional requirements for the site. But it is obvious that those 2 cases
+    do not cover all possible scenarios, nagative cases, etc.
 
-##Todo
+## Todo
 - cleanup specs (add steps ?)
-- use cross-env
-- add notes about multiple browser and selenoid
-- add video record
+- use [cross-env](https://www.npmjs.com/package/cross-env) module in npm scripts
+- add video record with my own ffmpeg-reporter
 - use `NODE_PATH` variable to avoid relative paths
   
 ## Preconditions/Environment
@@ -171,8 +176,10 @@ You can download additional browser versions if needed.
 ```bash
 .\cm selenoid-ui start
 ```
-- no need to update test configs, by default tests endpoint is `http://localhost:4444/wd/hub`. Check status:
+- no need to update test configs, by default tests endpoint is `http://localhost:4444/wd/hub`.
+  Check status:
   - `http://localhost:4444/status`
+  - docker ps
   - open UI: `http://localhost:8080/`
   // image
 
