@@ -26,6 +26,7 @@ function setupCapabilities(config) {
     const capabilitiesMap = {
         chrome: {
             browserName: 'chrome',
+            enableVNC: true,
             version: '',
             platform: 'ANY',
         },
@@ -40,7 +41,7 @@ function setupCapabilities(config) {
                 },
             },
         },
-        multiCapabilities: [
+        multiple: [
             {
                 browserName: 'chrome',
             },
@@ -58,7 +59,7 @@ function setupCapabilities(config) {
 
     /* eslint-disable no-param-reassign */
     if (capabilityName === 'multiple') {
-        config.multipleCapabilities = capabilitiesMap[capabilityName];
+        config.multiCapabilities = capabilitiesMap[capabilityName];
     } else {
         config.capabilities = capabilitiesMap[capabilityName];
     }
