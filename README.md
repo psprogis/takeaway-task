@@ -170,7 +170,8 @@ multiCapabilities: [
 - download and start `cm` utility, see [official instructions] (https://aerokube.com/cm/latest/) or download binary from the
 [release page](https://github.com/aerokube/cm/releases). During the first run it will download all necessary browser images.
 Run docker images to double check:
-// image here
+![cm selenoid start and docker images output](https://drive.google.com/file/d/12Z3xzBtsBYcEjXSVOP7NGldEF2FpotZz/view?usp=sharing "cm selenoid start and docker images output")
+
 You can download additional browser versions if needed.
 - start `selenoid-ui`:
 ```bash
