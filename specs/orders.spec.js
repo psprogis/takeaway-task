@@ -3,12 +3,13 @@ const { MainPage } = require('../lib/ui/elements');
 const { setNonAngularSite } = require('../lib/browserHelpers');
 
 describe('orders feature', () => {
+
     beforeAll(async () => {
         log.info('setup before test');
         await setNonAngularSite();
 
         const BASE_URL = 'https://www.thuisbezorgd.nl/en/';
-        // const BASE_URL = 'https://www.thuisbezorgd.nl/'; // will work in Dutch language also
+        // const BASE_URL = 'https://www.thuisbezorgd.nl/'; // will work in Dutch language also, can be moved to config
         this.mainPage = new MainPage(BASE_URL);
     });
 
@@ -21,6 +22,16 @@ describe('orders feature', () => {
     it('should allow to create an order with cash payment, closest amount', async () => {
         allure.story('STORY-111: user should be able to order food');
 
+        // the whole test also can be written in "fluent style", with only chaining, e.g.
+        // in this case most of the methods should return 'this', for the chaining
+        // but in this case we do not see navigation and mediator pages
+        // await this.mainPage
+        //     .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
+        //     .selectRestaurant({ name: 'TEST Restaurant Selenium' });
+        //     .addItem({ name: 'Salami' })
+        //     .placeOrder();
+        //     .processOrder({...});
+
         const searchRestaurantPage = await this.mainPage
             .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
 
@@ -28,9 +39,8 @@ describe('orders feature', () => {
             .toBeGreaterThan(0, 'did not find any restaurants on the restaurants page');
 
         const testRestaurant = await searchRestaurantPage.selectRestaurant({ name: 'TEST Restaurant Selenium' });
-        await testRestaurant.addItem({ name: 'Salami' });
+        const orderDetailsPage = await (await testRestaurant.addItem({ name: 'Salami' })).placeOrder();
 
-        const orderDetailsPage = await testRestaurant.placeOrder();
         const summaryPage = await orderDetailsPage.processOrder({
             where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
             who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },

@@ -39,9 +39,8 @@ workarounds/quick fixes instead of production ready solutions, some features are
 - storing images/screenshot inside git repository is more or less ok for this small example.
 
 ## Todo
-- cleanup specs (add steps ?)
 - use [cross-env](https://www.npmjs.com/package/cross-env) module in npm scripts
-- add video record with my own ffmpeg-reporter
+- add video recording of a tests and subtitles with the custom ffmpeg-reporter
 - use `NODE_PATH` variable to avoid relative paths
   
 ## Preconditions/Environment
