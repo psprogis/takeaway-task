@@ -1,12 +1,12 @@
 # Takeaway test task
 
 **Table of Contents**
-1. [Notes and comments](#notes%20and%20comments)
+1. [Notes and comments](#notes-and-comments)
 2. [Todo](#todo)
-3. [Preconditions and environment](#preconditions%20and%20environment)
-4. [Multiple browsers setup](#multiple%20browsers%20setup)
-    1. [How to start selenoid locally](#how%20to%20start%20selenoid%20locally)
-5. [Test report](#test%20report)
+3. [Preconditions and environment](#preconditions-and-environment)
+4. [Multiple browsers setup](#multiple-browsers-setup)
+    1. [How to start selenoid locally](#how-to-start-selenoid-locally)
+5. [Test report](#test-report)
 
 ## Notes and comments
 Since I have only 1 day (Sunday) for this task and a few hours each day during the week, I have to choose some
