@@ -5,7 +5,7 @@
 2. [Todo](#todo)
 3. [Preconditions and environment](#preconditions%20and%20environment)
 4. [Multiple browsers setup](#multiple%20browsers%20setup)
-    1 [How to start selenoid locally](#how%20to%20start%20selenoid%20locally)
+    1. [How to start selenoid locally](#how%20to%20start%20selenoid%20locally)
 5. [Test report](#test%20report)
 
 ## Notes and comments
