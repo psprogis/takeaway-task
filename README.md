@@ -100,6 +100,8 @@ Starting web server...
 # ...
 ```
 
+![console output](screenshots/console-output.png "console output")
+
 ## Multiple/different browser setup
 The easiest way to run test(s) with multiple/different browser(s) in the same time is to change `capabilities` or
 `multiCapabilities` in protractor config and use local browsers (do not forget to run webdriver-manager update before).
@@ -196,3 +198,8 @@ You can download additional browser versions if needed.
 [more details](https://aerokube.com/selenoid/latest/)
 
 ## Test report
+![allure main](screenshots/allure-main.png "allure main")
+
+![allure behaviors](screenshots/allure-behaviors.png "allure behaviors")
+
+![allure trends](screenshots/allure-trends.png "allure trends")
