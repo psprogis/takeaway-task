@@ -3,10 +3,10 @@
 **Table of Contents**
 1. [Notes and comments](#notes%20and%20comments)
 2. [Todo](#todo)
-3. [Preconditions\/Environment](#preconditions\/Environment)
-4. [Multiple/different browser setup](#multiple/different browser setup)
-    4.1 [How to start selenoid locally](#how to start selenoid locally)
-5. [Test report](#test report)
+3. [Preconditions and environment](#preconditions%20and%20environment)
+4. [Multiple browsers setup](#multiple%20browsers%20setup)
+    1 [How to start selenoid locally](#how%20to%20start%20selenoid%20locally)
+5. [Test report](#test%20report)
 
 ## Notes and comments
 Since I have only 1 day (Sunday) for this task and a few hours each day during the week, I have to choose some
@@ -50,7 +50,7 @@ workarounds/quick fixes instead of production-ready solutions, some features are
 - add video recording of a tests and subtitles with the custom ffmpeg-reporter
 - use `NODE_PATH` variable to avoid relative paths
   
-## Preconditions/Environment
+## Preconditions and environment
 * install protractor globally
 ```bash
 npm i -g protractor
@@ -109,7 +109,7 @@ Starting web server...
 
 ![console output](screenshots/console-output.png "console output")
 
-## Multiple/different browser setup
+## Multiple browsers setup
 The easiest way to run test(s) with multiple/different browser(s) at the same time is to change `capabilities` or
 `multiCapabilities` in protractor config and use local browsers (do not forget to run webdriver-manager update before).
 I guess I do not want to connect to the local browser (for example I have the only firefox nightly installed and do not want to
