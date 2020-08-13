@@ -1,9 +1,9 @@
 # Takeaway test task
 
 **Table of Contents**
-1. [Notes and comments](#notes and comments)
+1. [Notes and comments](#notes%20and%20comments)
 2. [Todo](#todo)
-3. [Preconditions/Environment](#preconditions/Environment)
+3. [Preconditions\/Environment](#preconditions\/Environment)
 4. [Multiple/different browser setup](#multiple/different browser setup)
     4.1 [How to start selenoid locally](#how to start selenoid locally)
 5. [Test report](#test report)
