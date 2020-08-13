@@ -2,6 +2,9 @@ const log = require('log4js').getLogger('spec-logger');
 const { MainPage } = require('../lib/ui/elements');
 const { setNonAngularSite } = require('../lib/browserHelpers');
 
+// steps for the second example/approach
+const { findRestaurant, placeOrder, processOrder } = require('../lib/ui/steps');
+
 describe('orders feature', () => {
 
     beforeAll(async () => {
@@ -54,22 +57,29 @@ describe('orders feature', () => {
 
     it('should allow to create an order with cash payment, exact amount', async () => {
         allure.story('STORY-222: user should be able to order food (some additional descrition goes here)');
+        allure.severity(allure.severity.CRITICAL);
 
-        const searchRestaurantPage = await this.mainPage
-            .findRestaurants({ address: '8888', selectOption: '8888 Alpha' });
-
-        const testRestaurant = await searchRestaurantPage.selectRestaurant({ name: "Maarten's Pannenkoeken" });
-        await testRestaurant.addItem({ name: 'Ham' });
-
-        const orderDetailsPage = await testRestaurant.placeOrder();
-        const summaryPage = await orderDetailsPage.processOrder({
-            where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
-            who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },
-            when: { time: 'asap' },
-            payment: { type: 'cash' },
+        // another approach using allure steps
+        // it requires +1 abstraction layer with DSL/step functions, but allure report will contain more details
+        const testRestaurant = await findRestaurant({
+            address: '8888',
+            selectOption: '8888 Alpha',
+            name: "Maarten's Pannenkoeken",
         });
 
-        expect(summaryPage.getOrderReference()).toMatch(/[A-Z0-9]{6}/,
+        const orderDetailsPage = await placeOrder({ restaurant: testRestaurant, itemName: 'Ham' });
+
+        const orderReferenceNumber = await processOrder({
+            orderPage: orderDetailsPage,
+            orderDetails: {
+                where: { address: 'main street 2415', postcode: '8888AA', city: 'Enschede' },
+                who: { name: 'TestUSer', email: 'testuser@test.test', phone: '1234567890' },
+                when: { time: 'asap' },
+                payment: { type: 'cash' },
+            },
+        });
+
+        expect(orderReferenceNumber).toMatch(/[A-Z0-9]{6}/,
             'order reference should contains 6 alpha-numeric characters');
     });
 });
