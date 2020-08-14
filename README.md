@@ -13,25 +13,24 @@ Since I have only 1 day (Sunday) for this task and a few hours each day during t
 workarounds/quick fixes instead of production-ready solutions, some features are unstable and require more time for investigation.
 
 - **test framework**: protractor@7.0.0. In case I have more time, I would like to try **webdriver.io**.
-  cypress/puppeteer - are good for the integration tests, but these 2 cases look more like long and heavy e2e tests
-  and should be run with selenium based wrapper.
-  codecept.js - I know the author of this framework (Michael Bondarchuk), he also lives in Kyiv. But (at first glance)
+  *cypress/puppeteer* - are good for the integration tests, but these 2 cases look more like long and heavy e2e tests
+  and should be run with selenium based wrapper. *codecept.js* - I know the author of this framework (Michael Bondarchuk), he also lives in Kyiv. But (at first glance)
   I do not like silly syntax with `I.doSomething`.
     - protractor is installed globally just for this example, usually, it is a part of the test container (with webdriver-manager)
     - **components library** requires time, at least 2-3 weeks to create all fragments/elements: dropdowns, inputs, more complex widget, etc.
       It can be our own solution, or we can use some popular library, e.g. [Page Fragments](https://github.com/Xotabu4/protractor-element-extend). 
-      As a quick fix I created only high level classes and 1 GenericDropbox as an example, it should be fixed in the future.
+      As a quick fix I created only high level classes and 1 `GenericDropbox` as an example, it should be fixed in the future.
     - since it is non-angular site some additional `waitFor` calls required.
     - some selectors should be improved.
     - storing images/screenshot inside git repository is more or less ok for this small example.
-- **test structure**. I like classic multi-layers approach, e.g.: DSL methods -> services -> REST/UI classes -> native libraries
-  There are a lot of variations, for example with steps-functions (used in allure)
+- **test structure**. I like classic multi-layers approach, e.g.: DSL methods -> services -> REST/UI classes -> native libraries.
+  There are a lot of variations, for example with steps-functions (used in allure).
 - **"Language of the webpage does not matter (you can use English or Dutch)"** - verified in chrome for both English and Dutch, works ok,
   pages have lots of ids so it is easy to find elements. 
 - **reporting**: jasmine supports a lot of reporters, I added only `spec-reporter`, but there is a `custom-reporters` package, etc.
-  Visual reporting: very easy choice, since there are no alternatives, [Allure Report](https://docs.qameta.io/allure/#_about)
+  **Visual reporting**: very easy choice, since there are no alternatives, [Allure Report](https://docs.qameta.io/allure/#_about)
   is a standard de-facto in the industry.  Results will be generated after each `npm t<:capability>` run, to generate html report run `npm run report`.
-  See the screenshot below.
+  See the screenshot [below](#test-report).
 - **"Documentation in code"** - good code should be self-explaining, also I have some comments and TODOs.
   In the real projects I use jsdocs. 
 - **"Static data should be read from file"** - I'm not sure that I understand correctly, what data should be read from file...
@@ -40,15 +39,15 @@ workarounds/quick fixes instead of production-ready solutions, some features are
     should be as close to test as possible, in this case, it is easy to read and understand the test scenario.
     Anyway, I created data directory, and it can be required in the test, it has orders data, but I didn't use it:)
 - **"Coverage of functional scenarios, including corner cases"** - it is the only requirement I didn't understand completely:
-  - code coverage (istambul, jacoco, etc.) ? - it should be done during unit tests. I guess [Drill4j](https://github.com/Drill4J) already has UI support.
+  - code coverage ([istambul](https://istanbul.js.org/), [jacoco](https://www.eclemma.org/jacoco/), etc.) ? - it should be done during unit tests. I guess [Drill4j](https://github.com/Drill4J) already has UI support.
   - requirements coverage - I do not have any functional requirements for the site. But, it is obvious, that those 2 cases
     do not cover all possible scenarios, negative cases, etc.
-    - scenario: the whole scenario(s) is pretty big and should be split into small tests for each page. Case1 and case2 look almost identical.
 
 ## Todo
-- use [cross-env](https://www.npmjs.com/package/cross-env) module in npm scripts
-- add video recording of a tests and subtitles with the custom ffmpeg-reporter
-- use `NODE_PATH` variable to avoid relative paths
+- use [cross-env](https://www.npmjs.com/package/cross-env) module in npm scripts.
+- add video recording of a tests and subtitles with the custom ffmpeg-reporter.
+- use `NODE_PATH` variable to avoid relative paths.
+- (optional) add parameter values into allure steps descriptions.
   
 ## Preconditions and environment
 * install protractor globally
@@ -111,16 +110,16 @@ Starting web server...
 
 ## Multiple browsers setup
 The easiest way to run test(s) with multiple/different browser(s) at the same time is to change `capabilities` or
-`multiCapabilities` in protractor config and use local browsers (do not forget to run webdriver-manager update before).
-I guess I do not want to connect to the local browser (for example I have the only firefox nightly installed and do not want to
+`multiCapabilities` in protractor config and use local browsers (do not forget to run `webdriver-manager update` before).
+You may not want to connect to the local browser (for example I have the only firefox nightly installed and do not want to
 download and install a stable version), so the best solution will be to use [Seleniod](https://aerokube.com/selenoid/).
- Steps on how to use selenoid locally are described below.
+ Steps on how to use selenoid locally are described [below](#how-to-start-selenoid-locally).
  
 The previous solution is good just to play around, for some local runs, etc. Here are some possible solutions for the
 production testing:
-  - deploy a cluster of Selenoids in AWS or other cloud providers and manage it ourselves.  
+  - deploy a cluster of `Selenoids` in `AWS` or other cloud providers and manage it ourselves.  
   - if we have more money - [Moon](https://aerokube.com/moon/) can be used.
-  - if we have plenty of money and want to waste them all - BrowserStack and other alternatives can be used
+  - if we have unlimited budget - [BrowserStack](https://www.browserstack.com/) and other alternatives can be used.
 
 **please  note:** tests pass successfully only in chrome, I see that there are some issues with firefox and chrome-headless,
 but I need more time to debug and fix them.
@@ -178,7 +177,7 @@ multiCapabilities: [
 - make sure docker is installed and running on your machine.
 - download and start `cm` utility, see [official instructions](https://aerokube.com/cm/latest/) or download binary from the
 [release page](https://github.com/aerokube/cm/releases). During the first run it will download all necessary browser images.
-Run docker images to double check:
+Run `docker images` to double check:
 
 ![cm selenoid start and docker images output](screenshots/cm-start.png "cm selenoid start and docker images output")
 
@@ -194,7 +193,7 @@ You can download additional browser versions if needed.
 - no need to update test configs, by default tests endpoint is `http://localhost:4444/wd/hub`.
   Check status:
   - `http://localhost:4444/status`
-  - docker ps
+  - `docker ps`
   - open UI: `http://localhost:8080/`
   
   ![selenoid ui](screenshots/selenoid-ui.png "selenoid-ui")
