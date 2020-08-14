@@ -19,8 +19,8 @@ workarounds/quick fixes instead of production-ready solutions, some features are
   I do not like silly syntax with `I.doSomething`.
     - protractor is installed globally just for this example, usually, it is a part of the test container (with webdriver-manager)
     - **components library** requires time, at least 2-3 weeks to create all fragments/elements: dropdowns, inputs, more complex widget, etc.
-      It can be our own solution, or we can use some popular library, e.g. [Page Fragments](https://github.com/Xotabu4/protractor-element-extend)
-      as a quick fix I created only high level classes and 1 GenericDropbox as an example, it should be fixed in the future.
+      It can be our own solution, or we can use some popular library, e.g. [Page Fragments](https://github.com/Xotabu4/protractor-element-extend). 
+      As a quick fix I created only high level classes and 1 GenericDropbox as an example, it should be fixed in the future.
     - since it is non-angular site some additional `waitFor` calls required.
     - some selectors should be improved.
     - storing images/screenshot inside git repository is more or less ok for this small example.
